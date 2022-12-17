@@ -17,28 +17,31 @@
 // Attention: If the number has leading zeros the amount of digits should be considered.
 
 function incrementString(strng) {
-  //gets only digits from the end of a string
-  const lastDigits = (strng) => {
+  function lastDigits(strng) {
     let reversedArg = strng.split("").reverse().join("");
     let number = "";
     //go from last string item till no num
     for (let i = 0; i < reversedArg.length; i++) {
       if (!isNaN(reversedArg[i])) {
         //   console.log(reversedArg[i]);
+        console.log(reversedArg[i]);
         number = reversedArg[i] + number;
       } else {
-        return `${number}`;
+        return String(number);
       }
     }
-  };
-  //returns number + 1 with prefixed zeros
-  let returnIncrementedNumber = (lastDigits) => {
+    return String(number);
+  }
+  function returnIncrementedNumber(lastDigits) {
     let addOne = +lastDigits + 1;
     for (let i = 0 + String(addOne).length; i < lastDigits.length; i++) {
       addOne = "0" + addOne;
     }
     return addOne;
-  };
+  }
+  if (strng.length === 0) {
+    return "1";
+  }
   return (
     strng.substring(0, strng.length - lastDigits(strng).length) +
     returnIncrementedNumber(lastDigits(strng))
